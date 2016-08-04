@@ -1,3 +1,4 @@
+"use strict";
 // Enemies our player must avoid
 var Enemy = function() {
     // Variables applied to each of our instances go here,
@@ -28,8 +29,8 @@ Enemy.prototype.render = function() {
 
 Enemy.prototype.reset = function(){
 	this.x = -101;
-	this.y = 83 * getRandomInt(1,3);
-	this.speed = getRandomInt(100,400);
+	this.y = 83 * (Math.floor(Math.random() * (3 - 1 + 1)) + 1);
+	this.speed = Math.floor(Math.random() * (400 - 100 + 1)) + 100;
 };
 
 //Enemy.prototype.checkCollisions = 
@@ -48,7 +49,7 @@ var Player = function(){
 Player.prototype.update = function(){
 	
 	var self = this;
-	this.win = false;
+	self.win = false;
 	
 	self.x = 101 * self.col;
 	self.y = 83 * self.row;
@@ -100,7 +101,7 @@ Player.prototype.reset = function(){
 
 var allEnemies = [];
 
-for(i=0; i<3; i++){
+for(var i=0; i<3; i++){
 	allEnemies.push(new Enemy());
 }
 
@@ -120,6 +121,3 @@ document.addEventListener('keyup', function(e) {
 });
 
 
-function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
